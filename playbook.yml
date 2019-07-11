@@ -1,0 +1,22 @@
+#Minha primeira playbook
+- name: Minha primeira Playbook
+  hosts: all
+  tasks:
+
+  - name: Atualizando o resolv.conf
+    copy:
+      src: resolv.conf
+      dest:  /etc/resolv.conf
+
+  - name: Garantindo a instalacao do pacote SL em todas as maquinas
+    apt:
+      name: sl
+      update_cache: yes
+      state: present
+    when: ansible_os_family == "Debian" #So executa se o OS for Debian
+
+  - name: Garantir a instalacao do EPEL-Release
+    yum:
+      name: epel-release
+      state: present
+    when: ansible_os_family == "RedHat"

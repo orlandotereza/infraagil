@@ -1,0 +1,16 @@
+- name: Instalacao dos Apps
+  hosts: devops docker
+  tasks:
+
+  - name: Garantir a instalacao pacotes basicos do sistema
+    apt:
+      name: "{{ item }}"
+      update_cache: yes
+      state: present
+    loop:
+      - vim
+      - nano
+      - sl
+      - ccze
+      - dnsutils
+      - tree
