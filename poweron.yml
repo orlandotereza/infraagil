@@ -1,5 +1,10 @@
 - name: Power On Server DELL by iDrac
   hosts: all
   tasks:
-    - name: Run command to Power-On server
-      command: racadm serveraction powerup
+    - name: Performing Power Action "{{ power_action }}"
+      dellemc_change_power_state:
+        idrac_ip: 10.60.109.5 # The iDRAC IP address
+        idrac_port: 443 # The iDRAC HTTP/HTTPS port, by default 443
+        idrac_user: root # iDRAC user
+        idrac_pwd: calvin # iDRAC user's password
+        change_power: On # One of the following actions: 'On','ForceOff','GracefulRestart','GracefulShutdown','PushPowerButton','Nmi'
