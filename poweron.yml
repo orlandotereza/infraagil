@@ -1,0 +1,5 @@
+- name: Power On Server DELL by iDrac
+  hosts: all
+  tasks:
+    - name: Run command to Power-On server
+      command: racadm serveraction powerup
